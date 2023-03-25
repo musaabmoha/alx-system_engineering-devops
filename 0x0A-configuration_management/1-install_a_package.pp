@@ -1,6 +1,6 @@
 package { 'flask':
 ensure => installed,
-source => pip3,
+source => python3-pip,
 version => 2.1.0,
 }
 
