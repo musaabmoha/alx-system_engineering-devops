@@ -2,5 +2,5 @@
 # Client configuration file
 # file with user config
 Host 34.73.24.78
-IdentityFile ~/.ssh/holberton
+IdentityFile ~/.ssh/school
 PasswordAuthentication no
