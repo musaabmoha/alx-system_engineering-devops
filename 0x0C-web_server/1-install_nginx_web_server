@@ -1,33 +1,22 @@
-#!/usr/bin/env bash
-#install ngix 
+#!/bin/bash
 
-sudo apt-get update -y && \
-sudo apt-get install -y nginx
-if [ $? -eq 0 ]
-then
-    echo -e \
-"http {
-    root /var/www/holberton;
-    index index.html;
-    server {
-        listen 80;
-        location \ {
-        }
+# Update package lists
+apt-get update
+
+# Install Nginx package
+apt-get install -y nginx
+
+# Configure Nginx server
+cat > /etc/nginx/sites-available/default << EOF
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        echo "Hello World!";
     }
 }
-events {
-}" > /etc/nginx/nginx.conf
-    mkdir -p /var/www/holberton
-    echo "hello World!" > \
-	/var/www/holberton/index.html
-    service nginx start
-    if [ $? -ne 0 ]
-    then
-	"Problem starting nginx"
-	exit 1
-    fi
-else
-    echo "Could not install nginx"
-    exit 1
-fi
-exit 0
+EOF
+
+# Restart Nginx
+service nginx restart
